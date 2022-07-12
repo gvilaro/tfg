@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 class Posicio:
 
     def __init__(self, fila: int, columna: int):
@@ -9,6 +11,10 @@ class Posicio:
         if fila < 0 or fila > 7 or columna < 0 or columna > 7:
             raise IndexError("La posició final indicada està fora del tauler")
         'if (fila or columna) < 0 or (fila or columna) > 7:'
+
+    def esIgual(self, posicio: Posicio) -> bool:
+        return self.fila == posicio.fila and self.columna == posicio.columna
+
 
 
 

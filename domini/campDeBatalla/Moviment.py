@@ -1,5 +1,5 @@
-from .Posicio import Posicio
-from ..exercit.Peca import Peca
+from . import Posicio
+from ..exercit import Peca
 
 
 class Moviment:

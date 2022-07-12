@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82675424-f01a-4d75-8448-6808f93264fc" name="Default Changelist" comment="" />
+    <list default="true" id="82675424-f01a-4d75-8448-6808f93264fc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Usuario.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Usuario.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domini/Joc.py" beforeDir="false" afterPath="$PROJECT_DIR$/domini/Joc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domini/campDeBatalla/Moviment.py" beforeDir="false" afterPath="$PROJECT_DIR$/domini/campDeBatalla/Moviment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domini/campDeBatalla/Posicio.py" beforeDir="false" afterPath="$PROJECT_DIR$/domini/campDeBatalla/Posicio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domini/campDeBatalla/Tauler.py" beforeDir="false" afterPath="$PROJECT_DIR$/domini/campDeBatalla/Tauler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domini/constants/EstatsPartida" beforeDir="false" afterPath="$PROJECT_DIR$/domini/constants/EstatsPartida.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domini/exercit/Alfil.py" beforeDir="false" afterPath="$PROJECT_DIR$/domini/exercit/Alfil.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domini/exercit/Cavall.py" beforeDir="false" afterPath="$PROJECT_DIR$/domini/exercit/Cavall.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domini/exercit/Peca.py" beforeDir="false" afterPath="$PROJECT_DIR$/domini/exercit/Peca.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domini/exercit/Peo.py" beforeDir="false" afterPath="$PROJECT_DIR$/domini/exercit/Peo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domini/exercit/Rei.py" beforeDir="false" afterPath="$PROJECT_DIR$/domini/exercit/Rei.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domini/exercit/Reina.py" beforeDir="false" afterPath="$PROJECT_DIR$/domini/exercit/Reina.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domini/exercit/Torre.py" beforeDir="false" afterPath="$PROJECT_DIR$/domini/exercit/Torre.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +31,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="29DGYRiMPq4Gr1r47UirWbZPPSo" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,17 +43,68 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/domini" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/domini/exercit/Peca.py" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Usuario\Documents\quart\tfg\jocEscacs\domini" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Usuario\Documents\quart\tfg\jocEscacs\domini\campDeBatalla" />
       <recent name="C:\Users\Usuario\Documents\quart\tfg\jocEscacs\domini\exercit" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Usuario\Documents\quart\tfg\jocEscacs\domini\constants" />
+      <recent name="C:\Users\Usuario\Documents\quart\tfg\jocEscacs\domini" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.Joc">
+    <configuration name="Joc" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="jocEscacs" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Usuario\Documents\quart\tfg\jocEscacs\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/domini" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/domini/Joc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Peca" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="jocEscacs" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Usuario\Documents\quart\tfg\jocEscacs\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/domini/exercit" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/domini/exercit/Peca.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.Joc" />
+      <item itemvalue="Python.Peca" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -47,34 +119,99 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
-    <state x="518" y="222" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1653249890280">
+    <state x="361" y="74" key="#Inspections" timestamp="1656274255198">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="518" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1653249890280" />
-    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser" timestamp="1654803154841">
+    <state x="361" y="74" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1656274255198" />
+    <state x="223" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1657571837417">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1654803154841" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1652640367127">
+    <state x="223" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1657571837417" />
+    <state x="518" y="222" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1657572057652">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1652640367127" />
-    <state x="324" y="59" key="SettingsEditor" timestamp="1654970759440">
+    <state x="518" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1657572057652" />
+    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser" timestamp="1657583324956">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="324" y="59" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1654970759440" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1655311158348">
+    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1657583324956" />
+    <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1657472659190">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1655311158348" />
-    <state width="600" height="424" key="javadoc.popup" timestamp="1653316682976">
+    <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1657472659190" />
+    <state x="520" y="281" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1656274756644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="600" height="424" key="javadoc.popup/0.0.1536.824@0.0.1536.824" timestamp="1653316682976" />
+    <state x="520" y="281" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1656274756644" />
+    <state x="401" y="11" key="CommitChangelistDialog2" timestamp="1657614558719">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="401" y="11" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1657614558719" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1656285561667">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1656285561667" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1657571830321">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1657571830321" />
+    <state width="1515" height="269" key="GridCell.Tab.0.bottom" timestamp="1657583921981">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="269" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1657583921981" />
+    <state width="1515" height="269" key="GridCell.Tab.0.center" timestamp="1657583921981">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="269" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1657583921981" />
+    <state width="1515" height="269" key="GridCell.Tab.0.left" timestamp="1657583921981">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="269" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1657583921981" />
+    <state width="1515" height="269" key="GridCell.Tab.0.right" timestamp="1657583921981">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="269" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1657583921981" />
+    <state x="324" y="59" key="SettingsEditor" timestamp="1656285911056">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="324" y="59" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1656285911056" />
+    <state x="93" y="93" width="1350" height="638" key="ShowDiffWithBranchDialog" timestamp="1656285561667">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="ShowDiffWithBranchDialog/0.0.1536.824@0.0.1536.824" timestamp="1656285561667" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1657613931644">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1657613931644" />
+    <state x="580" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1657539140773">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="580" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1657539140773" />
+    <state width="600" height="424" key="javadoc.popup" timestamp="1657403568370">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="600" height="424" key="javadoc.popup/0.0.1536.824@0.0.1536.824" timestamp="1657403568370" />
     <state x="710" y="88" key="refactoring.ChangeSignatureDialog" timestamp="1654803177630">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="710" y="88" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1654803177630" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1657404084470">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1657404084470" />
   </component>
 </project>

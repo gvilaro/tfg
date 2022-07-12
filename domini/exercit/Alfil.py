@@ -1,8 +1,8 @@
-from .Peca import Peca
-from .Rei import Rei
-from ..campDeBatalla.Moviment import Moviment
-from ..campDeBatalla.Posicio import Posicio
-from ..campDeBatalla.Tauler import Tauler
+from . import Peca
+from . import Rei
+from ..campDeBatalla import Moviment
+from ..campDeBatalla import Posicio
+from ..campDeBatalla import Tauler
 
 
 class Alfil(Peca):
@@ -36,11 +36,8 @@ class Alfil(Peca):
     def movimentsPossibles(self, tauler: Tauler) -> [Moviment]:
         moviments: [Moviment] = []
         if super().pecaProtegeixDescoberta(tauler, True):
-            reiPropi: Rei = tauler.getRei(self.blanca)
-            direccioFila: int = self.direccioRecorregut(self.posicio.fila, reiPropi.posicio.fila)
-            direccioColumna: int = self.direccioRecorregut(self.posicio.columna, reiPropi.posicio.columna)
-            self.afegeixMovimentsPossibles(tauler, self.posicio, moviments, direccioFila, direccioColumna)
-            self.afegeixMovimentsPossibles(tauler, self.posicio, moviments, -direccioFila, -direccioColumna)
+            moviments.extend(self.movimentsPossiblesEnLineaDescoberta(tauler, True, 1))
+            moviments.extend(self.movimentsPossiblesEnLineaDescoberta(tauler, True, -1))
             return moviments
         for fila in [-1, 1]:
             for columna in [-1, 1]:

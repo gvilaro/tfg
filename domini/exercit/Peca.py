@@ -1,11 +1,14 @@
+from __future__ import annotations
+
 import abc
-from ..campDeBatalla.Posicio import Posicio
-from ..campDeBatalla.Tauler import Tauler
-from ..campDeBatalla.Moviment import Moviment
-from .Rei import Rei
-from .Reina import Reina
-from .Torre import Torre
-from .Alfil import Alfil
+
+from . import Alfil
+from . import Rei
+from . import Reina
+from . import Torre
+from ..campDeBatalla import Moviment
+from ..campDeBatalla import Posicio
+from ..campDeBatalla import Tauler
 
 
 class Peca(metaclass=abc.ABCMeta):
@@ -23,29 +26,30 @@ class Peca(metaclass=abc.ABCMeta):
 
     def pecaProtegeixDescoberta(self, tauler: Tauler, evitarDescoberta: bool) -> bool:
         tauler.setCasella(self.posicio, None)
-        protegeixDescoberta: bool = False
         reiDescobert: Rei = tauler.getRei(self.blanca == evitarDescoberta)
+        pecaAtacantDescoberta: Peca = None
         if self.casellaEnLinea(reiDescobert.posicio):
-            if self.recorregutMovimentLliure(tauler, reiDescobert.poscio):
+            if self.recorregutMovimentLliure(tauler, reiDescobert.posicio):
                 direccioFilaDescoberta: int = -(self.direccioRecorregut(self.posicio.fila, reiDescobert.posicio.fila))
                 direccioColumnaDescoberta: int = -(self.direccioRecorregut(self.posicio.columna, reiDescobert.posicio.columna))
-                protegeixDescoberta = self.reiDescobert(tauler, evitarDescoberta, self.posicio, direccioFilaDescoberta, direccioColumnaDescoberta)
+                pecaAtacantDescoberta = self.reiDescobert(tauler, evitarDescoberta, self.posicio, direccioFilaDescoberta, direccioColumnaDescoberta)
         tauler.setCasella(self.posicio, self)
-        return protegeixDescoberta
+        return pecaAtacantDescoberta is not None
 
-    def reiDescobert(self, tauler: Tauler, evitarDescoberta: bool, posicioAnterior: Posicio, incrementFila: int, incrementColumna: int) -> bool:
+    def reiDescobert(self, tauler: Tauler, evitarDescoberta: bool, posicioAnterior: Posicio, incrementFila: int, incrementColumna: int) -> Peca:
         try:
             posicio: Posicio = Posicio(posicioAnterior.fila + incrementFila, posicioAnterior.columna + incrementColumna)
             peca: Peca = tauler.taulerDeJoc[posicio.fila][posicio.columna]
             if peca is None:
                 return self.reiDescobert(tauler, evitarDescoberta, posicio, incrementFila, incrementColumna)
             if peca.blanca == (self.blanca == evitarDescoberta):
-                return False
+                return None
             elif (isinstance(peca, Reina)) or (isinstance(peca, Torre)) or (isinstance(peca, Alfil)):
-                return peca.escacAlRei(tauler, tauler.getRei(self.blanca == evitarDescoberta).posicio)
-            return False
+                if peca.escacAlRei(tauler, tauler.getRei(self.blanca == evitarDescoberta).posicio):
+                    return peca
+            return None
         except Exception:
-            return False
+            return None
 
     def afegeixMovimentAlJoc(self, tauler: Tauler, posicioFinal: Posicio, moviments: [Moviment]):
         movimentActual: Moviment = self.fesMoviment(tauler, posicioFinal)
@@ -121,6 +125,10 @@ class Peca(metaclass=abc.ABCMeta):
     def movimentsPossibles(self, tauler: Tauler) -> [Moviment]:
         pass
 
+    @abc.abstractmethod
+    def imprimeix(self) -> str:
+        pass
+
     def afegeixMovimentsPossibles(self, tauler: Tauler, posicioAnterior: Posicio, moviments: [Moviment], incrementFila: int, incrementColumna: int):
         try:
             posicio: Posicio = Posicio(posicioAnterior.fila + incrementFila, posicioAnterior.columna + incrementColumna)
@@ -133,6 +141,15 @@ class Peca(metaclass=abc.ABCMeta):
         except Exception:
             return
 
-    @abc.abstractmethod
-    def imprimeix(self) -> str:
-        pass
+    def movimentsPossiblesEnLineaDescoberta(self, tauler: Tauler, enLineaAmbReiPropi: bool, direccioRei: int) -> [Moviment]:
+        moviments: [Moviment] = []
+        rei: Rei = tauler.getRei(self.blanca == enLineaAmbReiPropi)
+        direccioFila: int = self.direccioRecorregut(self.posicio.fila, rei.posicio.fila) * direccioRei
+        direccioColumna: int = self.direccioRecorregut(self.posicio.columna, rei.posicio.columna) * direccioRei
+        self.afegeixMovimentsPossibles(tauler, self.posicio, moviments, direccioFila, direccioColumna)
+
+        if not enLineaAmbReiPropi:
+            moviments = [moviment for moviment in moviments if not (moviment.posicioFinal.esIgual(rei.posicio))]
+        return moviments
+
+

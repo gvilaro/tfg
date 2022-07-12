@@ -1,8 +1,8 @@
-from ..exercit.Peca import Peca
-from ..exercit.Rei import Rei
-from .Posicio import Posicio
-from .Moviment import Moviment
-from..exercit.factoria.FactoriaDePeces import FactoriaDePeces
+from . import Moviment
+from . import Posicio
+from ..exercit import Peca
+from ..exercit import Rei
+from ..exercit.factoria.FactoriaDePeces import FactoriaDePeces
 
 
 class Tauler:

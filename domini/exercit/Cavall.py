@@ -1,7 +1,7 @@
-from ..campDeBatalla.Moviment import Moviment
-from ..campDeBatalla.Posicio import Posicio
-from ..campDeBatalla.Tauler import Tauler
-from .Peca import Peca
+from . import Peca
+from ..campDeBatalla import Moviment
+from ..campDeBatalla import Posicio
+from ..campDeBatalla import Tauler
 
 
 class Cavall(Peca):
@@ -12,7 +12,7 @@ class Cavall(Peca):
         if not self.casellaLegal(tauler, posicioFinal) or self.pecaProtegeixDescoberta(tauler, True):
             return False
         x: int = abs(self.posicio.fila - posicioFinal.fila)
-        y: int = abs(self.posicio.fila - posicioFinal.fila)
+        y: int = abs(self.posicio.columna - posicioFinal.columna)
         if x * y == 2:
             self.afegeixMovimentAlJoc(tauler, posicioFinal, moviments)
             return True
@@ -20,7 +20,7 @@ class Cavall(Peca):
 
     def escacAlRei(self, tauler: Tauler, posicioReiRival: Posicio) -> bool:
         x: int = abs(self.posicio.fila - posicioReiRival.fila)
-        y: int = abs(self.posicio.fila - posicioReiRival.fila)
+        y: int = abs(self.posicio.columna - posicioReiRival.columna)
         return x * y == 2
 
     def pecaOfegada(self, tauler: Tauler) -> bool:

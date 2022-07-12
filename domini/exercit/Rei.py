@@ -1,8 +1,7 @@
-from .Peca import Peca
-from .Torre import Torre
-from ..campDeBatalla.Tauler import Tauler
-from ..campDeBatalla.Posicio import Posicio
-from ..campDeBatalla.Moviment import Moviment
+from . import Cavall
+from . import Peca
+from . import Torre
+from ..campDeBatalla import Tauler, Posicio, Moviment
 
 
 class Rei(Peca):
@@ -25,7 +24,7 @@ class Rei(Peca):
         movimentValid: bool = False
         x: int = abs(self.posicio.fila - posicioFinal.fila)
         y: int = abs(self.posicio.columna - posicioFinal.columna)
-        if (x * y) < 2:
+        if (x < 2 and y < 2) and (x * y) < 2:
             movimentValid = not self.casellaAmenacada(tauler, posicioFinal)
         elif self.esEnrocament(tauler, posicioFinal):
             if self.enrocaAlRei(tauler, posicioFinal):
@@ -120,11 +119,34 @@ class Rei(Peca):
     def escacAlRei(self, tauler: Tauler, possibleSortidaReiRival: Posicio) -> bool:
         x: int = abs(self.posicio.fila - possibleSortidaReiRival.fila)
         y: int = abs(self.posicio.columna - possibleSortidaReiRival.columna)
-        return (x * y) < 2
+        return (x < 2 and y < 2) and (x * y) < 2
+
+    def movimentsProteccioReiAmenacat(self, tauler: Tauler) -> [Moviment]:
+        moviments: [Moviment] = []
+        ultimMoviment: Moviment = tauler.ultimMoviment
+
+        if ultimMoviment.pecaMoguda.escacAlRei(tauler, self):
+            pecaAmenacant: Peca = ultimMoviment.pecaMoguda
+        else:
+            pecaAmenacant: Peca = self.trobaPecaAtacantDescoberta(ultimMoviment.posicioFinal, tauler)
+
+        moviments.append(Moviment(pecaAmenacant, None, None, pecaAmenacant.posicio))
+        if self.AmenacaEnTajectoria(pecaAmenacant):
+            moviments.extend(pecaAmenacant.movimentsPossiblesEnLineaDescoberta(tauler, False, 1))
+        return moviments
+
+    def trobaPecaAtacantDescoberta(self, casellaDescoberta: Posicio, tauler: Tauler) -> Peca:
+        direccioFilaDescoberta: int = -(self.direccioRecorregut(casellaDescoberta.fila, self.posicio.fila))
+        direccioColumnaDescoberta: int = -(self.direccioRecorregut(casellaDescoberta.columna, self.posicio.columna))
+        return self.reiDescobert(tauler, True, casellaDescoberta, direccioFilaDescoberta, direccioColumnaDescoberta)
+
+    def AmenacaEnTajectoria(self, pecaAmenacant: Peca) -> bool:
+        distanciaFilaRei: int = abs(pecaAmenacant.posicio.fila - self.posicio.fila)
+        distanciaColumnaRei: int = abs(pecaAmenacant.posicio.columna - self.posicio.columna)
+        return (distanciaFilaRei > 1 and distanciaColumnaRei > 1) and not isinstance(pecaAmenacant, Cavall)
 
     def imprimeix(self) -> str:
         if self.blanca:
             return 'K'
         else:
             return 'k'
-

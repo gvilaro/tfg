@@ -1,8 +1,5 @@
-from .Peca import Peca
-from .Rei import Rei
-from ..campDeBatalla.Tauler import Tauler
-from ..campDeBatalla.Posicio import Posicio
-from ..campDeBatalla.Moviment import Moviment
+from . import Peca, Rei
+from ..campDeBatalla import Tauler, Posicio, Moviment
 
 
 class Reina(Peca):
@@ -56,11 +53,8 @@ class Reina(Peca):
     def movimentsPossibles(self, tauler: Tauler) -> [Moviment]:
         moviments: [Moviment] = []
         if super().pecaProtegeixDescoberta(tauler, True):
-            reiPropi: Rei = tauler.getRei(self.blanca)
-            direccioFila: int = self.direccioRecorregut(self.posicio.fila, reiPropi.posicio.fila)
-            direccioColumna: int = self.direccioRecorregut(self.posicio.columna, reiPropi.posicio.columna)
-            self.afegeixMovimentsPossibles(tauler, self.posicio, moviments, direccioFila, direccioColumna)
-            self.afegeixMovimentsPossibles(tauler, self.posicio, moviments, -direccioFila, -direccioColumna)
+            moviments.extend(self.movimentsPossiblesEnLineaDescoberta(tauler, True, 1))
+            moviments.extend(self.movimentsPossiblesEnLineaDescoberta(tauler, True, -1))
             return moviments
         for direccioFila in range(-1, 2):
             for direccioColumna in range(-1, 2):

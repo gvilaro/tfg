@@ -1,27 +1,32 @@
 from random import random
 
-from .Peca import Peca
-from .Reina import Reina
-from .Torre import Torre
-from .Alfil import Alfil
-from .Cavall import Cavall
-
-from ..campDeBatalla.Tauler import Tauler
-from ..campDeBatalla.Posicio import Posicio
-from ..campDeBatalla.Moviment import Moviment
+from . import Peca, Rei, Reina, Torre, Alfil, Cavall
+from ..campDeBatalla import Tauler, Posicio, Moviment
+from ..constants.EstatsPartida import Estats
 
 
 class Peo(Peca):
     def __init__(self, blanca: bool, posicio: Posicio, morta: bool = False):
         super().__init__(blanca, posicio, morta)
         self.moguda = False
+        if self.blanca:
+            self.endavant = 1
+        else:
+            self.endavant = -1
+
+    'sobrecàrrega Redefinit'
+    def pecaProtegeixDescoberta(self, tauler: Tauler, posicioFinal: Posicio) -> bool:
+        if super().pecaProtegeixDescoberta(tauler, True):
+            rei: Rei = tauler.getRei(self.blanca)
+            return not rei.casellaEnLinea(posicioFinal)
+        return False
 
     def moure(self, tauler: Tauler, posicioFinal: Posicio, moviments: [Moviment]) -> bool:
         if not self.casellaLegal(tauler, posicioFinal):
             return False
 
         pasEndavant: int = self.posicio.fila - posicioFinal.fila
-        if self.peoVaEnrere(pasEndavant) or self.pecaProtegeixDescoberta(tauler, True):
+        if self.peoVaEnrere(pasEndavant) or self.pecaProtegeixDescoberta(tauler, posicioFinal):
             return False
 
         movimentValid: bool = False
@@ -52,19 +57,18 @@ class Peo(Peca):
         pecaMatada: Peca = tauler.taulerDeJoc[posicioFinal.fila][posicioFinal.columna]
         if not (pecaMatada is None):
             return True
-        if self.posicio.fila == 3 or self.posicio.fila == 4:
+        filaSortidaPassant: int = self.posicio.fila + (self.endavant * 2)
+        if filaSortidaPassant == 1 or filaSortidaPassant == 6:
             return self.mataPeoPassant(tauler, posicioFinal)
         return False
 
     def mataPeoPassant(self, tauler: Tauler, posicioFinal: Posicio) -> bool:
-        if self.blanca:
-            peoPassant: Peca = tauler.taulerDeJoc[4][posicioFinal.columna]
-            filaSortidaPassant: int = 6
-        else:
-            peoPassant: Peca = tauler.taulerDeJoc[3][posicioFinal.columna]
-            filaSortidaPassant: int = 1
-        return (tauler.ultimMoviment.pecaMoguda == peoPassant) and \
-               (tauler.ultimMoviment.posicioInicial.fila == filaSortidaPassant)
+        peoPassant: Peca = tauler.taulerDeJoc[self.posicio.fila][posicioFinal.columna]
+        filaSortidaPassant: int = self.posicio.fila + (self.endavant * 2)
+        if isinstance(peoPassant, Peo):
+            return (tauler.ultimMoviment.pecaMoguda == peoPassant) and \
+                   (tauler.ultimMoviment.posicioInicial.fila == filaSortidaPassant)
+        return False
 
     'MètodeRedefinit'
     def casellaLegal(self, tauler: Tauler, posicio: Posicio) -> bool:
@@ -90,9 +94,10 @@ class Peo(Peca):
     def movimentMatantPassant(self, tauler: Tauler, posicioFinal: Posicio) -> bool:
         if posicioFinal.columna == self.posicio.columna:
             return False
-        if not (self.posicio.fila == 3 or self.posicio.fila == 4):
-            return False
-        return self.mataPeoPassant(tauler, posicioFinal)
+        filaSortidaPassant: int = self.posicio.fila + (self.endavant * 2)
+        if filaSortidaPassant == 1 or filaSortidaPassant == 6:
+            return self.mataPeoPassant(tauler, posicioFinal)
+        return False
 
     def afegeixMovimentBufadaAlPassant(self, tauler: Tauler, posicioFinal: Posicio, moviments: [Moviment]):
         pecaMatada: Peca = tauler.taulerDeJoc[self.posicio.fila][posicioFinal.columna]
@@ -108,8 +113,7 @@ class Peo(Peca):
         self.mouPecaAlTauler(tauler, posicioFinal, moviment)
 
     def escullPecaPerCoronar(self):
-        escullPeca = input("Acabes de coronar el peó. Introdueix 's' o 'S' si vols seleccionar la nova peça."
-                           "\nIntrodueix qualsevol altre caràcter si prefereixes que es generi aleatoriament")
+        escullPeca = input(Estats.MISSATGE_CORONAR)
 
         if escullPeca.upper() == 'S':
             escullPeca = input("Introdueix qualsevol dels caracters ['R', 'T', 'A', 'C'] segons la peça que vulguis")
@@ -127,36 +131,28 @@ class Peo(Peca):
     def escacAlRei(self, tauler: Tauler, posicioReiRival: Posicio) -> bool:
         if abs(self.posicio.columna - posicioReiRival.columna) != 1:
             return False
-        if self.blanca:
-            return posicioReiRival.fila == self.posicio.fila + 1
-        else:
-            return posicioReiRival.fila == self.posicio.fila - 1
+        return posicioReiRival.fila == self.posicio.fila + self.endavant
 
     def pecaOfegada(self, tauler: Tauler) -> bool:
         return len(self.movimentsPossibles(tauler)) == 0
 
     def movimentsPossibles(self, tauler: Tauler) -> [Moviment]:
         movimentsPossibles: [Moviment] = []
-        if self.pecaProtegeixDescoberta(tauler, True):
-            return movimentsPossibles
-        if self.blanca:
-            endavant: int = 1
-        else:
-            endavant: int = -1
-        for columna in range(-1, 2):
-            try:
-                posicio: Posicio = Posicio(self.posicio.fila + endavant, columna)
-                if self.casellaLegal(tauler, posicio):
-                    if self.posicio.columna == columna:
-                        movimentsPossibles.append(Moviment(self, None, self.posicio, posicio))
-                    elif self.mataPecaRival(tauler, posicio):
-                        movimentsPossibles.append(Moviment(self, None, self.posicio, posicio))
-            except IndexError:
-                {}
-        if not self.moguda:
-            posicio: Posicio = Posicio(self.posicio.fila + (endavant * 2), self.posicio.columna)
-            if tauler.esCasellaBuida(posicio) and self.moure2caselles(tauler):
-                movimentsPossibles.append(Moviment(self, None, self.posicio, posicio))
+        for fila in range(1, 3):
+            for columna in range(-1, 2):
+                try:
+                    posicio: Posicio = Posicio(self.posicio.fila + (self.endavant * fila), columna)
+                    if self.casellaLegal(tauler, posicio) and not self.pecaProtegeixDescoberta(tauler, posicio):
+                        if self.posicio.columna == columna:
+                            if fila == 1:
+                                movimentsPossibles.append(Moviment(self, None, self.posicio, posicio))
+                            elif tauler.esCasellaBuida(posicio) and self.moure2caselles(tauler):
+                                movimentsPossibles.append(Moviment(self, None, self.posicio, posicio))
+                        elif self.mataPecaRival(tauler, posicio):
+                            movimentsPossibles.append(Moviment(self, None, self.posicio, posicio))
+                except IndexError:
+                    {}
+        return movimentsPossibles
 
     def imprimeix(self) -> str:
         if self.blanca:
